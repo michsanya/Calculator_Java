@@ -77,6 +77,13 @@ throws Exception //т.к. формат математической операц
             operand_1 = Integer.parseInt(words[0]);
             operand_2 = Integer.parseInt(words[2]);
         }
+//      6.1 Проверка, что числа не больше 10 и не меньше 1
+        if (operand_1 >10 | operand_2 > 10 ){
+            throw new Exception("Операнды должны быть не больше чем 10, а у нас: "+operand_1 + ", "+operand_2);
+        }
+        if (operand_1 < 1 | operand_2 < 1 ){
+            throw new Exception("Операнды должны быть не меньше чем 1, а у нас: "+operand_1 + ", "+operand_2);
+        }
 
 //        7. Выполнение операции. Если не валидный результат - ошибка
         result = switch (words[1]) {
@@ -97,7 +104,10 @@ throws Exception //т.к. формат математической операц
         return outputString;
     }
 
-    private static String arabToRoman(int arabNumero) {
+    private static String arabToRoman(int arabNumero) throws Exception {
+        if (arabNumero<1){
+            throw new Exception("Римские числа не отрицательные");
+        }
         StringBuilder romanNumeroNoCorrect = new StringBuilder();
         String romanNumero;
         while (arabNumero != 0){
